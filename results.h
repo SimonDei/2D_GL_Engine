@@ -1,0 +1,15 @@
+//
+// Created by a00007 on 09.12.2020.
+//
+
+#ifndef UNTITLED_RESULTS_H
+#define UNTITLED_RESULTS_H
+
+typedef enum _RESULT_CODES {
+    XD_SUCCESS = 0x0000,
+    XD_FAILED  = 0x0001
+} RESULTCODES;
+
+typedef RESULTCODES XD_RESULT;
+
+#endif //UNTITLED_RESULTS_H
