@@ -30,11 +30,18 @@ XD_RESULT create_renderer(PTR(XD_RENDERER) p_renderer) {
 
     glViewport(0, 0, rect.right, rect.bottom);
 
+    //glEnable(GL_DEPTH_TEST);
+
+    //glEnable(GL_BLEND);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
+
+    /*
     glMatrixMode(GL_PROJECTION);
     glLoadIdentity();
     glOrtho(0.0, rect.right, rect.bottom, 0.0, 0.0, 1.0);
     glMatrixMode(GL_MODELVIEW);
     glLoadIdentity();
+    */
 
     return XD_SUCCESS;
 }
@@ -88,10 +95,9 @@ XD_RESULT load_texture(XD_STRING file_path,
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
     glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
 
-    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, file.imageWidth, file.imageHeight, 0, GL_RGBA, GL_UNSIGNED_BYTE, file.imageData);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, file._image_width, file._image_height, 0, GL_RGBA, GL_UNSIGNED_BYTE, file._image_data);
 
     glBindTexture(GL_TEXTURE_2D, 0);
-
     glDisable(GL_TEXTURE_2D);
 
     p_renderer->_textures[p_renderer->_texture_index++] = *p_texture;
@@ -100,7 +106,6 @@ XD_RESULT load_texture(XD_STRING file_path,
 }
 
 XD_RESULT set_texture(XD_TEXTURE texture) {
-    glEnable(GL_TEXTURE_2D);
     glBindTexture(GL_TEXTURE_2D, texture);
 
     return XD_SUCCESS;
